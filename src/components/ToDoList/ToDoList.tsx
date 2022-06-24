@@ -9,10 +9,10 @@ export const ToDoList = () => {
 
     return <>
  <BrowserRouter>
- <Routes>
-    <Route path="/" element={<ItemsList/>}/>
-    <Route path="/rr" element={<div>focuse</div>}/>
-</Routes>
+    <Routes>
+        <Route path="/" element={<ItemsList/>}/>
+        <Route path="/rr" element={<div>focuse</div>}/>
+    </Routes>
  </BrowserRouter>
     </>
 }
