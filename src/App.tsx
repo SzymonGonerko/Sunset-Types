@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import {Html, OrbitControls, Environment} from '@react-three/drei'
 
-import { ToDoList } from './components/ToDoList';
+import { ToDoList } from './components/ToDoList/ToDoList';
 
 
 
