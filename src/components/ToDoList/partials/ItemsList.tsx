@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react";
+import React, { ChangeEvent, ChangeEventHandler, FormEvent, MouseEventHandler, useState } from "react";
 import {nanoid} from "nanoid"
 
 type Task = {
@@ -31,8 +31,12 @@ const handleChangeStatus = (element : Task) => (e: ChangeEvent<HTMLInputElement>
 }
 
 
-const handleClear = () => {
+const handleClearFinished = () => {
 setTasks(tasks => tasks.filter(el => !el.isComplete))
+}
+
+const handleDelete = (element: Task) => (e: React.MouseEvent) => {
+setTasks(prev => prev.filter(el => el.id !== element.id))
 }
 
 return (
@@ -42,7 +46,7 @@ return (
         <li key={task.id}>
             <input type="checkbox" checked={task.isComplete} onChange={handleChangeStatus(task)}/>
             {task.label}
-            <input type="button" value="Usuń"/>
+            <input onClick={handleDelete(task)} type="button" value="Usuń"/>
         </li>
         
         )}
@@ -51,7 +55,7 @@ return (
     value={newTask} 
     onChange={handleChange}/>
 
-    <input type="button" value="Wyszyść Ukończone" onClick={handleClear}/>
+    <input type="button" value="Wyszyść Ukończone" onClick={handleClearFinished}/>
 
 </form>)
 }
