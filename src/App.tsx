@@ -6,9 +6,18 @@ import {Html, OrbitControls, Environment} from '@react-three/drei'
 
 import { ToDoList } from './components/ToDoList/ToDoList';
 
+import { useSelector, useDispatch } from "react-redux";
+
+import { RootState } from "./app/store";
+
 
 
 const App = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector(
+    (state: RootState) => state.tasks
+  );
+  
 
 
   return (
@@ -21,7 +30,7 @@ const App = () => {
 
           <group position={[7,0,0]} rotation={[0,-Math.PI/2,0]} >
             <Html transform>
-              <ToDoList/>
+              <ToDoList val={tasks} dispatch={dispatch}/>
             </Html>
           </group>
 
