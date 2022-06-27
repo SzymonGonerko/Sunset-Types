@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import {nanoid} from "nanoid"
-import { addTasks } from "../../../features/taskSlice";
+import { addTask, removeTask, changeCheckedTask } from "../../../features/taskSlice";
 
 
 
@@ -21,20 +21,21 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 const handleNewTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 if (newTask !== "") {
-    dispatch(addTasks({isComplete: false, id: nanoid(), label: newTask}))
+    dispatch(addTask({isComplete: false, id: nanoid(), label: newTask}))
     setNewTask("")}
 }
+
 
 
 return (
     <>
     <form onSubmit={handleNewTask}>
     <ul>
-        {val.map((task) => 
+        {val.map((task , i) => 
         <li key={task.id}>
-            <input type="checkbox" checked={task.isComplete}/>
+            <input type="checkbox" checked={task.isComplete} onChange={() => dispatch(changeCheckedTask(task.id))}/>
             {task.label}
-            <input type="button" value="Usuń"/>
+            <input type="button" value="Usuń" onClick={() => dispatch(removeTask(i))}/>
         </li>
         
         )}
