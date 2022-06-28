@@ -30,7 +30,7 @@ const App = () => {
 
           <group position={[7,0,0]} rotation={[0,-Math.PI/2,0]} >
             <Html transform>
-              <ToDoList val={tasks} dispatch={dispatch}/>
+              <ToDoList tasks={tasks} dispatch={dispatch}/>
             </Html>
           </group>
 

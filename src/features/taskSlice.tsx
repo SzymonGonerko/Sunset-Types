@@ -20,20 +20,23 @@ export const tasksSlice = createSlice({
     },
 
     changeCheckedTask: (state, action: PayloadAction<string>) => {
-      state.map(task => {
+      state.forEach(task => {
         if (task.id === action.payload) {
           task.isComplete = !task.isComplete
         }
       })},
 
-
-
-
+      clearCompletedTasks: (state, action: PayloadAction<boolean>) => {
+        return state.filter(task => 
+          task.isComplete !== action.payload
+        )
+      },
+       
   },
 
 
 });
 
-export const { addTask, removeTask, changeCheckedTask } = tasksSlice.actions;
+export const { addTask, removeTask, changeCheckedTask, clearCompletedTasks } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
