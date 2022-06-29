@@ -12,11 +12,6 @@ export const tasksSlice = createSlice({
   initialState: [] as Task[],
   reducers: {
 
-    changeInputValue: (state, action: PayloadAction<any>) => {
-      state.forEach((task, i) => { 
-        // if (state.length === i) task.textValueInput = action.payload
-      })
-    },
 
     addTask: (state, action: PayloadAction<{isComplete: boolean, id: string, label: string}>) => {
       state.push(action.payload);
@@ -44,6 +39,6 @@ export const tasksSlice = createSlice({
 
 });
 
-export const { addTask, removeTask, changeCheckedTask, clearCompletedTasks, changeInputValue } = tasksSlice.actions;
+export const { addTask, removeTask, changeCheckedTask, clearCompletedTasks } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
