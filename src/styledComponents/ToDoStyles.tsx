@@ -1,3 +1,4 @@
+import { StyledComponent } from "@emotion/styled";
 import styled from "styled-components";
 
 
@@ -8,24 +9,31 @@ justify-content: space-around;
 align-items: center;
 width: 230px;
 height: 300px;
-background-color: rgb(25 24 23 / 90%);
+background-color: ${props => props.theme.bgcForm};
+border: ${props => props.theme.borderForm};
 border-radius: 20px;
+transition: 0.2s;
 `
 
 export const Ul = styled.ul`
     height: 50%;
     width: 90%;
-    background-color: rgb(25 24 23 / 80%);
+    background-color: ${props => props.theme.bgcUl};
     overflow-y: scroll;
     border-radius: 5px;
+    transition: 0.2s;
 `
 
 export const Header = styled.header`
-    color: white;
-    background-color: #e6b800;
+    color: ${props => props.theme.color};
+    background-color: ${props => props.theme.bgcHeader};
     border-radius: 10px;
     width: 50%;
+    height: 30px;
     text-align: center;
+    line-height: 28px;
+    font-size: 20px;
+    transition: 0.2s;
 `
 
 export const AddTaskWrapper = styled.div`
@@ -37,11 +45,12 @@ export const AddTaskWrapper = styled.div`
 export const TextInput = styled.input`
     outline: none;
     caret-color: #00ff00;
-    background-color: rgb(25 24 23 / 80%);
+    background-color: ${props => props.theme.bgcTextInput};
     border: none;
     border-radius: 5px;
     padding-left: 5px;
-    color: white;
+    color: ${props => props.theme.color};
+    transition: 0.2s;
 `
 
 export const CircleDiv = styled.div`
@@ -51,6 +60,15 @@ export const CircleDiv = styled.div`
     background-position: center;
     width: 30px;
     height: 30px;
+    transition: 0.2s;
+`
+
+export const Li = styled.li`
+    color: ${props => props.theme.color};
+    margin: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `
 
 export const ClearInput = styled.input`
@@ -59,7 +77,8 @@ export const ClearInput = styled.input`
     border-radius: 5px;
     text-transform: uppercase;
     border: none;
-    background-color: rgb(255, 153, 153);
+    color: ${props => props.theme.color};
+    background-color: ${props => props.theme.bgcClearInput};
     transition: 0.2s;
     &&:hover {
         background-color: rgb(252, 130, 130);

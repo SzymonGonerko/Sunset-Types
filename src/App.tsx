@@ -4,12 +4,16 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import {Html, OrbitControls, Environment, Sphere} from '@react-three/drei'
 import Switch from '@mui/material/Switch';
+import { DarkGlobalStyle, LightGlobalStyle } from './styledComponents/GlobalStyles';
 
 import { ToDoList } from './components/ToDoList';
 
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "./app/store";
+
+ 
+
 
 
 
@@ -31,7 +35,7 @@ const App = () => {
 
   return (
 <Canvas camera={{ position: [-Math.PI/2, 0, 0] } }>
-  
+  {(back === "sunset" ?<LightGlobalStyle/> : <DarkGlobalStyle/>)}
       <Suspense fallback={null}>
       
           <OrbitControls/>
@@ -39,7 +43,7 @@ const App = () => {
 
           <group position={[7,0,0]} rotation={[0,-Math.PI/2,0]} >
             <Html transform>
-              <ToDoList tasks={tasks} dispatch={dispatch}/>
+              <ToDoList isDarkMood={back} tasks={tasks} dispatch={dispatch}/>
             </Html>
           </group>
 

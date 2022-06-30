@@ -1,18 +1,24 @@
 import React, { ChangeEvent, FormEvent, useState, useId, useRef } from "react";
 import {nanoid} from "nanoid"
 import { addTask, removeTask, changeCheckedTask, clearCompletedTasks } from "../features/taskSlice";
-import {Form, Ul, Header, AddTaskWrapper, TextInput, CircleDiv, ClearInput} from "./ToDoStyles"
-import {AddCircle} from '@styled-icons/material'
+
+import {Form, Ul, Header, AddTaskWrapper, TextInput, CircleDiv, ClearInput, Li} from "../styledComponents/ToDoStyles"
+import {ThemeProvider} from "styled-components"
+import {theme} from "../styledComponents/theme"
+
+import {AddCircle, Delete} from '@styled-icons/material'
+import {Checkbox} from "../styledComponents/stylesCheckbox"
 
 interface ToDoList {
     tasks: {isComplete: boolean; id: string; label: string}[];
-    dispatch: any
+    dispatch: any;
+    isDarkMood?: string
   }
 
 
 
 
-export const ToDoList = ({tasks, dispatch}: ToDoList) => {
+export const ToDoList = ({isDarkMood , tasks, dispatch}: ToDoList) => {
 const input = useRef<any>(null)
 
 const handleNewTask = (e: FormEvent<HTMLFormElement>) => {
@@ -21,26 +27,37 @@ const handleNewTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 }
 
+const handleClickCircle =  () : void  => {
+    if ( input.current.value !== "") dispatch(addTask({isComplete: false, id: nanoid(), label: input.current.value}))
+    input.current.value = ""
+}
 
-return (
+
+
+return (<>
+    <ThemeProvider theme={(isDarkMood === "sunset" ? theme.light : theme.dark)}>
+        
     <Form onSubmit={handleNewTask}>
         <Header>Sunset List</Header>
         <Ul>
             {tasks.map((task , i) => 
-            <li key={task.id}>
-                <input type="checkbox" checked={task.isComplete} onChange={() => dispatch(changeCheckedTask(task.id))}/>
-                {task.label}
-                <input type="button" value="Usuń" onClick={() => dispatch(removeTask(i))}/>
-            </li>
+            <Li key={task.id}>
+                <Checkbox checked={task.isComplete} taskId={task.id} dispatch={dispatch}/>
+                <p>{task.label}</p>
+                
+                <Delete size={20} onClick={() => dispatch(removeTask(i))}/>
+            </Li>
             )}
         </Ul>
-
+        
         <AddTaskWrapper>
             <TextInput ref={input} placeholder="Add Task"/>
-            <AddCircle size={30} onClick={() => {dispatch(addTask({isComplete: false, id: nanoid(), label: input.current.value}))}}/>
+            <AddCircle color="black" size={30} onClick={() => {handleClickCircle()}}/>
         </AddTaskWrapper>
 
         <ClearInput type="button" value="Clear finished" onClick={() => dispatch(clearCompletedTasks(true))}/>
    </Form>
+   </ThemeProvider>
+   </>
 )
 }
