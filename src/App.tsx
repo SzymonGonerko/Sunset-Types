@@ -7,6 +7,7 @@ import Switch from '@mui/material/Switch';
 import { DarkGlobalStyle, LightGlobalStyle } from './styledComponents/GlobalStyles';
 
 import { ToDoList } from './components/ToDoList';
+import {Calculator} from "./components/Calculator"
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -53,6 +54,12 @@ const App = () => {
               checked={checked}
               onChange={handleChange}
             />
+            </Html>
+          </group>
+
+          <group position={[0,0,-9]} rotation={[0, 0, 0]} >
+            <Html transform>
+             <Calculator/>
             </Html>
           </group>
 
