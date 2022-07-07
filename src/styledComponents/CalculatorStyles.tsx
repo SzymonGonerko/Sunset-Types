@@ -1,10 +1,9 @@
-import React from "react"
 import styled from "styled-components"
 
 export const Container = styled.div`
     display: flex;
-    width: 250px;
-    height: 400px;
+    width: 270px;
+    height: 420px;
     background-Color: #212224;
     border-radius: 20px;
     justify-content: center;
@@ -13,8 +12,8 @@ export const Container = styled.div`
 
 export const Grid: any = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(6, 50px);
+    grid-template-columns: repeat(4, 55px);
+    grid-template-rows: repeat(6, 55px);
     gap: 10px;
     justify-content: center;
 `

@@ -7,6 +7,10 @@ border: none;
 background-color: #25292c;
 box-shadow: 8px 8px 24px -10px rgba(0, 0, 0, 1);
 font-weight: 800;
+transition: 0.3s;
+&:hover {
+  background-color: #31363a;
+}
 `
 
 type Props = {
@@ -16,20 +20,22 @@ type Props = {
     height?: number;
     color: string;
     bgcColor?: string
+    onClick?: (e: any ) => void;
+    key?: string
 }
 
 
-export const Button = ({label, position, width, height, color, bgcColor} : Props) => {
+export const Button = ({label, position, width, height, color, bgcColor, ...props} : Props) => {
   const styles: React.CSSProperties = {}
+
+
 
   if (bgcColor) styles.backgroundColor = bgcColor
   if (color) styles.color = color
-  if (width) {
-    styles.gridColumnEnd = `span ${width}`
-  }
-  if (height) {
-    styles.gridRowEnd = `span ${height}`
-  }
+  if (width) styles.gridColumnEnd = `span ${width}`
+  if (height) styles.gridRowEnd = `span ${height}`
+  
+
 
   if (position) {
     styles.gridColumnStart = position[0];
@@ -37,6 +43,6 @@ export const Button = ({label, position, width, height, color, bgcColor} : Props
   }
 
   
-return <StyledButton style={styles}>{label}</StyledButton>
+return <StyledButton {...props} style={styles}>{label}</StyledButton>
 }
 

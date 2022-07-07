@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import {Html, OrbitControls, Environment, Sphere} from '@react-three/drei'
+import {Html, OrbitControls, Environment} from '@react-three/drei'
 import Switch from '@mui/material/Switch';
 import { DarkGlobalStyle, LightGlobalStyle } from './styledComponents/GlobalStyles';
 
 import { ToDoList } from './components/ToDoList';
 import {Calculator} from "./components/Calculator"
+import {Mesh} from "./components/Mesh"
 
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "./app/store";
 
- 
+
 
 
 
@@ -21,24 +22,40 @@ import { RootState } from "./app/store";
 const App = () => {
   const dispatch = useDispatch();
   const [back, setBack] = useState<any>("sunset")
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
+  const [meshes, setMeshes]: any[] = useState([])
+
   const tasks: any[] = useSelector(
     (state: RootState) => state.tasks
   );
+
+  const operations: {
+    display?: string;
+    operator?: string;
+    expression?: string[];
+    sumInSky?: boolean
+    elementsInSky?: any[]} = useSelector((state: RootState) => state.operations)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);
     setBack((prev: {}) => (prev === "sunset"? "night": "sunset"))
   };
 
+useEffect(() => {
+  setMeshes((prev: number[]) => operations.elementsInSky)
+}, [operations.sumInSky, operations.elementsInSky])
 
 
 
-  return (
+
+
+  return (<>
 <Canvas camera={{ position: [-Math.PI/2, 0, 0] } }>
   {(back === "sunset" ?<LightGlobalStyle/> : <DarkGlobalStyle/>)}
       <Suspense fallback={null}>
-      
+        <ambientLight intensity={2}/>
+
+        
           <OrbitControls/>
           <Environment preset={back} background />
 
@@ -48,7 +65,7 @@ const App = () => {
             </Html>
           </group>
 
-          <group position={[7,5,2]} rotation={[0, -Math.PI/2, 0]} >
+          <group position={[7, 5, 2.4]} rotation={[0, -Math.PI/2, 0]} >
             <Html transform>
             <Switch
               checked={checked}
@@ -56,17 +73,21 @@ const App = () => {
             />
             </Html>
           </group>
-
+          
           <group position={[0,0,-9]} rotation={[0, 0, 0]} >
             <Html transform>
-             <Calculator/>
+             <Calculator operations={operations} dispatch={dispatch}/>
             </Html>
-          </group>
+          </group>          
 
+        {operations.sumInSky && operations.elementsInSky?.map((_:number, index : React.Key) => <Mesh length={meshes.length} positionX={index} key={index}/>)}
+          
+          
 
       </Suspense>
+      
 </Canvas>
-  );
+</>);
 }
 
 export default App;
