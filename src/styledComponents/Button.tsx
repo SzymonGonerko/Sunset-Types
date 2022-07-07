@@ -1,48 +1,58 @@
 import React, {useEffect} from "react"
 import styled from "styled-components"
 
-const StyledButton = styled.button`
+
+const StyledButtonNum = styled.button`
 border-radius: 50px;
 border: none;
-background-color: #25292c;
+background-color: ${props => props.theme.bgcBtn};
+color: ${props => props.theme.numColor};
 box-shadow: 8px 8px 24px -10px rgba(0, 0, 0, 1);
 font-weight: 800;
-transition: 0.3s;
-&:hover {
-  background-color: #31363a;
-}
+font-size: 20px;
+`
+
+const StyledButtonOperator = styled.button`
+border-radius: 50px;
+border: none;
+background-color: ${props => props.theme.bgcBtn};
+color: ${props => props.theme.operatorColor};
+box-shadow: 8px 8px 24px -10px rgba(0, 0, 0, 1);
+font-weight: 800;
+font-size: 20px;
+`
+
+const StyledButtonSum = styled.button`
+border-radius: 50px;
+border: none;
+background-color: ${props => props.theme.bgcBtnSum};
+color: ${props => props.theme.btnColorSum};
+box-shadow: 8px 8px 24px -10px rgba(0, 0, 0, 1);
+font-weight: 800;
+font-size: 20px;
 `
 
 type Props = {
     label?: string;
-    position?: [x: number, y: number];
     width?: number;
     height?: number;
-    color: string;
-    bgcColor?: string
     onClick?: (e: any ) => void;
-    key?: string
+    key?: string;
+    type?: string
 }
 
 
-export const Button = ({label, position, width, height, color, bgcColor, ...props} : Props) => {
+export const Button = ({label, width, height, type , ...props} : Props) => {
   const styles: React.CSSProperties = {}
 
 
-
-  if (bgcColor) styles.backgroundColor = bgcColor
-  if (color) styles.color = color
   if (width) styles.gridColumnEnd = `span ${width}`
   if (height) styles.gridRowEnd = `span ${height}`
   
-
-
-  if (position) {
-    styles.gridColumnStart = position[0];
-    styles.gridRowStart = position[1]
-  }
-
-  
-return <StyledButton {...props} style={styles}>{label}</StyledButton>
+return (<>
+    {type === "number" && <StyledButtonNum {...props} style={styles}>{label}</StyledButtonNum>}
+    {type === "operator" && <StyledButtonOperator {...props} style={styles}>{label}</StyledButtonOperator>}
+    {type === "sum" && <StyledButtonSum {...props} style={styles}>{label}</StyledButtonSum>}
+</>)
 }
 

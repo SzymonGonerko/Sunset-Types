@@ -1,12 +1,12 @@
-import React, { ChangeEvent, FormEvent, useState, useId, useRef } from "react";
+import React, { FormEvent, useRef } from "react";
 import {nanoid} from "nanoid"
-import { addTask, removeTask, changeCheckedTask, clearCompletedTasks } from "../features/taskSlice";
+import { addTask, removeTask,clearCompletedTasks } from "../features/taskSlice";
 
-import {Form, Ul, Header, AddTaskWrapper, TextInput, CircleDiv, ClearInput, Li} from "../styledComponents/ToDoStyles"
+import {Form, Ul, Header, AddTaskWrapper, TextInput, ClearInput, Li, CustomSwipe, CustomZoom} from "../styledComponents/ToDoStyles"
 import {ThemeProvider} from "styled-components"
-import {theme} from "../styledComponents/theme"
+import {themeToDoList} from "../styledComponents/theme"
 
-import {AddCircle, Delete} from '@styled-icons/material'
+import {AddCircle, Delete, ZoomOutMap} from '@styled-icons/material'
 import {Checkbox} from "../styledComponents/stylesCheckbox"
 
 interface ToDoList {
@@ -14,7 +14,6 @@ interface ToDoList {
     dispatch: any;
     isDarkMood?: string
   }
-
 
 
 
@@ -33,11 +32,12 @@ const handleClickCircle =  () : void  => {
 }
 
 
-
 return (<>
-    <ThemeProvider theme={(isDarkMood === "sunset" ? theme.light : theme.dark)}>
-        
+    <ThemeProvider theme={(isDarkMood === "sunset" ? themeToDoList.light : themeToDoList.dark)}>
+        <CustomSwipe color="#00d21b" size={35}/>
+        <CustomZoom color="red" size={35}/>
     <Form onSubmit={handleNewTask}>
+        
         <Header>Sunset List</Header>
         <Ul>
             {tasks.map((task , i) => 

@@ -1,5 +1,51 @@
 import { StyledComponent } from "@emotion/styled";
 import styled from "styled-components";
+import {Swipe, ZoomOutMap} from '@styled-icons/material'
+
+export const CustomSwipe = styled(Swipe)`
+@keyframes move {
+    0% {
+        top: -45px;
+        left: 42%;
+        transform: rotate(0deg);
+        opacity: 1;
+        
+    }
+    50% {
+        top: -45px;
+        left: 10%;
+        transform: rotate(-40deg);
+        opacity: 1;
+    }
+    100% {
+        top: -45px;
+        left: 70%;
+        transform: rotate(40deg);
+        opacity: 0;
+    }
+}
+    top: -45px;
+    left: 42%;
+    position: absolute;
+    animation: move 3s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+`
+
+export const CustomZoom = styled(ZoomOutMap)`
+    @keyframes showScale {
+    0% {transform: scale(1); opacity: 1;}
+    50% {transform: scale(1.9); opacity: 1;}
+    100% {transform: scale(0); opacity: 0}
+}
+    top: -45px;
+    left: 42%;
+    opacity: 0;
+    position: absolute;
+    animation: showScale 3s;
+    animation-fill-mode: forwards;
+    animation-delay: 4s;
+`
 
 
 export const Form = styled.form`

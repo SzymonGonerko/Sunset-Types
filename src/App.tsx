@@ -5,7 +5,7 @@ import { Canvas } from '@react-three/fiber'
 import {Html, OrbitControls, Environment} from '@react-three/drei'
 import Switch from '@mui/material/Switch';
 import { DarkGlobalStyle, LightGlobalStyle } from './styledComponents/GlobalStyles';
-
+import {Swipe} from '@styled-icons/material'
 import { ToDoList } from './components/ToDoList';
 import {Calculator} from "./components/Calculator"
 import {Mesh} from "./components/Mesh"
@@ -21,7 +21,7 @@ import { RootState } from "./app/store";
 
 const App = () => {
   const dispatch = useDispatch();
-  const [back, setBack] = useState<any>("sunset")
+  const [back, setBack] = useState<any>("night")
   const [checked, setChecked] = useState(true);
   const [meshes, setMeshes]: any[] = useState([])
 
@@ -59,6 +59,12 @@ useEffect(() => {
           <OrbitControls/>
           <Environment preset={back} background />
 
+          {/* <group position={[7, 4.5 ,0]} rotation={[0,-Math.PI/2,0]} >
+            <Html transform>
+              <Swipe style={{opacity: "0.5"}} size={40}/>
+            </Html>
+          </group> */}
+
           <group position={[7,0,0]} rotation={[0,-Math.PI/2,0]} >
             <Html transform>
               <ToDoList isDarkMood={back} tasks={tasks} dispatch={dispatch}/>
@@ -76,7 +82,7 @@ useEffect(() => {
           
           <group position={[0,0,-9]} rotation={[0, 0, 0]} >
             <Html transform>
-             <Calculator operations={operations} dispatch={dispatch}/>
+             <Calculator isDarkMood={back} operations={operations} dispatch={dispatch}/>
             </Html>
           </group>          
 
