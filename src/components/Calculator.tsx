@@ -1,7 +1,7 @@
-import React, { FormEventHandler, ChangeEvent, FormEvent, useState, useId, useRef, Dispatch} from "react"
+import React, {FormEvent} from "react"
 import {Container, Grid, Display} from "../styledComponents/CalculatorStyles"
 import {Button} from "../styledComponents/Button"
-import { setOperator, setDisplay, getSum } from "../features/operationsSlice";
+import {setOperator, setDisplay, getSum} from "../features/operationsSlice";
 import {nanoid} from "nanoid"
 import {ThemeProvider} from "styled-components"
 import {themeCalculator} from "../styledComponents/theme"

@@ -141,11 +141,10 @@ export const OperationsSlice = createSlice({
           const numbers = toNum.filter(el => (parseInt(el).toString() !== "NaN"))
 
         
-            const sumOrSubtraction = numbers.reduce((total : any, item: any, i : number): (number|undefined) => {
+            const sumOrSubtraction = numbers.reduce((total : number, item: number, i : number): (number|undefined) => {
                  if (i === 0) {
                     if (operators[i] === "+") return item + total
                     if (operators[i] === "-") return item - total
-
                  }
 
                  if (i > 0) {
@@ -167,19 +166,20 @@ export const OperationsSlice = createSlice({
               state.elementsInSky = []
 
               state.display = sumOrSubtraction
+              
               if (resultWithDivideAndMulti.length === 1) {
-                state.display = resultWithDivideAndMulti[0]
-                state.lastExpression = resultWithDivideAndMulti[0]
-                state.elementsInSky = []
+                  state.display = resultWithDivideAndMulti[0]
+                  state.lastExpression = resultWithDivideAndMulti[0]
+                  state.elementsInSky = []
               }
 
               if (action.payload.sumInSky && state.elementsInSky) {
-                let i: any = state.display
-                while (i > 0) {
-                  state.elementsInSky.push(i)
-                  i--
-                }
-                state.sumInSky = action.payload.sumInSky
+                  let i: any = state.display
+                  while (i > 0) {
+                    state.elementsInSky.push(i)
+                    i--
+                  }
+                  state.sumInSky = action.payload.sumInSky
               }
               
     },

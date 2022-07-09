@@ -35,7 +35,7 @@ export const CustomSwipe = styled(Swipe)`
 export const CustomZoom = styled(ZoomOutMap)`
     @keyframes showScale {
     0% {transform: scale(1); opacity: 1;}
-    50% {transform: scale(1.9); opacity: 1;}
+    50% {transform: scale(1.5); opacity: 1;}
     100% {transform: scale(0); opacity: 0}
 }
     top: -45px;
@@ -126,7 +126,9 @@ export const ClearInput = styled.input`
     color: ${props => props.theme.color};
     background-color: ${props => props.theme.bgcClearInput};
     transition: 0.2s;
-    &&:hover {
-        background-color: rgb(252, 130, 130);
-    }
+`
+
+export const TextTheme = styled.div`
+display: inline-block;
+padding-right: 10px;
 `

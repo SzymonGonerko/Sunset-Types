@@ -1,12 +1,12 @@
 import React, { FormEvent, useRef } from "react";
 import {nanoid} from "nanoid"
-import { addTask, removeTask,clearCompletedTasks } from "../features/taskSlice";
+import {addTask, removeTask,clearCompletedTasks} from "../features/taskSlice";
 
 import {Form, Ul, Header, AddTaskWrapper, TextInput, ClearInput, Li, CustomSwipe, CustomZoom} from "../styledComponents/ToDoStyles"
 import {ThemeProvider} from "styled-components"
 import {themeToDoList} from "../styledComponents/theme"
 
-import {AddCircle, Delete, ZoomOutMap} from '@styled-icons/material'
+import {AddCircle, Delete} from '@styled-icons/material'
 import {Checkbox} from "../styledComponents/stylesCheckbox"
 
 interface ToDoList {
@@ -34,8 +34,8 @@ const handleClickCircle =  () : void  => {
 
 return (<>
     <ThemeProvider theme={(isDarkMood === "sunset" ? themeToDoList.light : themeToDoList.dark)}>
-        <CustomSwipe color="#00d21b" size={35}/>
-        <CustomZoom color="red" size={35}/>
+    <CustomSwipe color="#00d21b" size={35}/>
+    <CustomZoom color="red" size={35}/>
     <Form onSubmit={handleNewTask}>
         
         <Header>Sunset List</Header>
@@ -44,7 +44,6 @@ return (<>
             <Li key={task.id}>
                 <Checkbox checked={task.isComplete} taskId={task.id} dispatch={dispatch}/>
                 <p>{task.label}</p>
-                
                 <Delete size={20} onClick={() => dispatch(removeTask(i))}/>
             </Li>
             )}

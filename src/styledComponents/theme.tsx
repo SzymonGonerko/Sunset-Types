@@ -39,9 +39,9 @@ export const themeToDoList: {dark: {}, light: {}} = {
             colorDisplay: "white",
             bgcUl: "#515151cc",
             bgcTextInput: "#1b1b1bcc",
-            bgcClearInput: "#da5858",
-            bgcCirlce: "#42e047",
-            borderCheck: "2px solid #42e047",
+
+
+    
         },
         light: {
             numColor: "black",
@@ -53,10 +53,7 @@ export const themeToDoList: {dark: {}, light: {}} = {
             borderForm: "1px solid black",
             bgcDisplay: "#b0b0b0",
             colorDisplay: "black",
-            bgcUl: "#515151cc",
             bgcTextInput: "#1b1b1bcc",
             bgcClearInput: "#da5858",
-            bgcCirlce: "#42e047",
-            borderCheck: "2px solid #42e047",
         },
         }

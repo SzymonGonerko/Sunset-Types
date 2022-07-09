@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
+import {Suspense} from 'react'
+import {Canvas} from '@react-three/fiber'
 import {Html, OrbitControls, Environment} from '@react-three/drei'
-import Switch from '@mui/material/Switch';
-import { DarkGlobalStyle, LightGlobalStyle } from './styledComponents/GlobalStyles';
-import {Swipe} from '@styled-icons/material'
-import { ToDoList } from './components/ToDoList';
+
+import {DarkGlobalStyle, LightGlobalStyle} from './styledComponents/GlobalStyles';
+import {Nightlight, LightMode} from '@styled-icons/material'
+import {ToDoList} from './components/ToDoList';
+import {TextTheme} from "./styledComponents/ToDoStyles"
 import {Calculator} from "./components/Calculator"
 import {Mesh} from "./components/Mesh"
+import {Loader} from "./Loader"
 
-import { useSelector, useDispatch } from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {RootState} from "./app/store";
 
-import { RootState } from "./app/store";
-
-
-
-
+import Jellyfishh from "./glb/Jellyfish"
+import Switch from '@mui/material/Switch';
 
 
-const App = () => {
+
+const App: React.FC = () => {
   const dispatch = useDispatch();
   const [back, setBack] = useState<any>("night")
   const [checked, setChecked] = useState(true);
@@ -50,48 +51,56 @@ useEffect(() => {
 
 
   return (<>
+  <Loader/>
 <Canvas camera={{ position: [-Math.PI/2, 0, 0] } }>
-  {(back === "sunset" ?<LightGlobalStyle/> : <DarkGlobalStyle/>)}
+      {(back === "sunset" ?<LightGlobalStyle/> : <DarkGlobalStyle/>)}
       <Suspense fallback={null}>
-        <ambientLight intensity={2}/>
 
-        
-          <OrbitControls/>
+
+          <ambientLight intensity={2}/>
+          <OrbitControls rotateSpeed={0.5}/>
           <Environment preset={back} background />
 
-          {/* <group position={[7, 4.5 ,0]} rotation={[0,-Math.PI/2,0]} >
-            <Html transform>
-              <Swipe style={{opacity: "0.5"}} size={40}/>
-            </Html>
-          </group> */}
 
-          <group position={[7,0,0]} rotation={[0,-Math.PI/2,0]} >
+
+          <group position={[7,0,0]} rotation={[0, -Math.PI/2 ,0]} >
             <Html transform>
               <ToDoList isDarkMood={back} tasks={tasks} dispatch={dispatch}/>
             </Html>
           </group>
 
+
+
           <group position={[7, 5, 2.4]} rotation={[0, -Math.PI/2, 0]} >
             <Html transform>
-            <Switch
-              checked={checked}
-              onChange={handleChange}
-            />
+              <div>
+                <TextTheme className='textTheme'>Theme:</TextTheme>
+                {back === "night" && <Nightlight className='iconTheme' size={20}/>}
+                {back === "sunset" && <LightMode className='iconTheme' size={20}/>}
+              </div>
+              <Switch
+                checked={checked}
+                onChange={handleChange}
+              />
             </Html>
           </group>
           
+
+
           <group position={[0,0,-9]} rotation={[0, 0, 0]} >
             <Html transform>
              <Calculator isDarkMood={back} operations={operations} dispatch={dispatch}/>
             </Html>
           </group>          
 
+
         {operations.sumInSky && operations.elementsInSky?.map((_:number, index : React.Key) => <Mesh length={meshes.length} positionX={index} key={index}/>)}
-          
-          
+        
+ 
+        {back === "night" &&<Jellyfishh rotation={[-0.5, 1, 0]}  position={[0, 1.1, 2.4]} scale={30}/>}
+
 
       </Suspense>
-      
 </Canvas>
 </>);
 }

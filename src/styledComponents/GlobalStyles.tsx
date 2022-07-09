@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 
 export const DarkGlobalStyle = createGlobalStyle`
 
@@ -18,19 +19,11 @@ export const DarkGlobalStyle = createGlobalStyle`
   border-radius: 5px;
   background-color: #42e047;
 }
+.textTheme {color: white}
+.iconTheme {color: white}
 `;
 
 export const LightGlobalStyle = createGlobalStyle`
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  user-select: none;
-}
-
 
 * {
   font-family: 'Open Sans',
@@ -49,3 +42,13 @@ body,
   background-color: #ffa500;
 }
 `;
+
+export const Container = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 40px;
+width: 100vw - 7px;
+height: 100vh;
+`
