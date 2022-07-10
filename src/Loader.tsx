@@ -24,6 +24,7 @@ export const Loader: React.FC = () => {
         <Container>
         <div>Sunset Types</div>
           <div>Loading...</div>
+          <div>{Math.floor(progress)}%</div>
         </Container>
     }
 
