@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+## Navigation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [Sunset_Types](#Sunset_Types)
+- [Technologies](#Technologies)
+- [Redux_is_deprecated?_Redux_Toolkit_(RTK)!](#Redux_is_deprecated?_Redux_Toolkit_(RTK)!)
+- [Structural_programming:_Method_getSum()_–_main_logic](#Structural_programming:_Method_getSum()_–_main_logic)
+- [Secret_Object](#Secret_Object)
 
-## Available Scripts
+# Sunset_Types
 
-In the project directory, you can run:
+https://sunsettypes.netlify.app/
 
-### `npm start`
+![SunsetTypes]()
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The main goal of the Sunset Types project was to create logic for ToDo list and the calculator. User can control the screen with the mouse or with the finger gestures (resize and shift components). The ToDo list tool allows you to enter a task to be performed, mark status and delete it. The calculator tool allows you to perform basic math operations with the ability to display the result in the sky. The user can choose one of two color themes - Dark and Light. The third secret object in the sky has been implemented in Dark  mode. It is a visual diversion for users.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Technologies
 
-### `npm test`
+![NPM]()
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project was implemented in the Three.js environment using two ecosystems, React-Three-Drei and React-Three-Fiber. The name of the Sunset Types project connecting to the TypeScript library. The global state of the application is managed by Redux and tools (Redux-toolkit). I used the Styled-Components library.
 
-### `npm run build`
+# Redux_is_deprecated?_Redux_Toolkit_(RTK)!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This year, there were messages suggesting that Redux functionality is deprecated. The official documentation note that the use of createStore from Redux is deprecated and recommends the use of Redux Toolkit (RTK). The argument of this position is that Redux is much more difficult to maintain. The fundamental change is implementing createSlice, and payloadAction as application state management tools.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+~~ import { createStore } from „redux” ~~
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+import { configureStore } from "@reduxjs/toolkit";
+```
 
-### `npm run eject`
+![toolkit]()
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Structural_programming:_Method_getSum()_–_main_logic
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The most important method of the calculator is getSum (), which sums up the entire sequence of operations entered by the user. First, all expressions are an array of strings. Then, step by step, array is modified depending on the operator in it, so;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Entire expression as an array of strings
+2. New array with expressions of multiplication and division, ie "/" and "X"
+3. Implementation of the result of multiplication and division to the main array
+4. Converting expressions to typeof number
+5. Get result using high order function [].reduce()
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![structural]()
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Secret_Object
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Knowing that the project is strictly technical, I decided to implement a visual object. I used the sketchfab library and Blender. I used fantasy and wondered what might be in distant galaxies. One of the objects that I associate with space and stars was a jellyfish. I created a prototype of the object with an animation and implemented it into the project using the directive:
+
+``
+npx gltfjsx Jellyfish.glb
+``
+
+![secretobject]()
