@@ -64,6 +64,7 @@ transition: 0.2s;
 export const Ul = styled.ul`
     height: 50%;
     width: 90%;
+    padding: 0;
     background-color: ${props => props.theme.bgcUl};
     overflow-y: scroll;
     border-radius: 5px;

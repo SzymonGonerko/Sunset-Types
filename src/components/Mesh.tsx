@@ -23,7 +23,6 @@ export const Mesh = ({positionX, length}: Mesh) => {
     <Sphere position={[(firstParam > 0 ? -firstParam : firstParam) + lengthParam/2, secParam + 6, -7]} args={[0.8, 50, 200]} {...propTypesSphere} >
             <MeshDistortMaterial
             color={randomColor}
-            emissive
             attach="material"
             distort={0.6}
             speed={4}
